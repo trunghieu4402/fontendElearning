@@ -1,0 +1,69 @@
+<div class="mainCourse">
+  <div class="head">
+    <h6>Danh Sach Môn Học</h6>
+    <div class="filter">
+      <span>Tìm Kiếm</span>
+      <input
+        style="width: 300px"
+        type="text"
+        (keyup)="Search($event)"
+        type="text"
+        placeholder="Mã Môn, Tên Môn "
+        class="form-control"
+        placeholder="Search"
+        aria-describedby="basic-addon1"
+      />
+      <button
+        type="button"
+        style="margin-left: 100px"
+        class="btn btn-primary"
+        (click)="openDialog()"
+      >
+        <i class="bi bi-plus-square-fill"></i> Thêm Môn Học
+      </button>
+    </div>
+  </div>
+  <table class="tableCourse">
+    <thead>
+      <tr>
+        <th>Stt</th>
+        <th>Mã Môn học</th>
+        <th>Tên Môn Học</th>
+        <th>Tín chỉ</th>
+        <th>Hệ Số</th>
+        <th>Loại Môn</th>
+        <th>Điều Kiện Tiên Quyết</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of listCourse
+            | paginate : { itemsPerPage: 10, currentPage: p };
+          let i = index
+        "
+      >
+        <td>{{ i }}</td>
+        <td>{{ item.courseId }}</td>
+        <td>
+          {{ item.courseName }}
+        </td>
+        <td>{{ item.credits }}</td>
+        <td>{{ item.coefficient }}</td>
+        <td>{{ item.type }}</td>
+        <td>
+          {{ item.prerequisites }}
+          <p *ngIf="item.requestCredits != 0">
+            {{ item.requestCredits }} Tín chỉ
+          </p>
+        </td>
+        <td>
+          <button class="btnSua"><i class="bi bi-tools"></i></button>
+          <button class="btnXoa"><i class="bi bi-trash3"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

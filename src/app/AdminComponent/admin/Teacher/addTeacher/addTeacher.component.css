@@ -1,0 +1,72 @@
+* {
+  border-radius: none;
+}
+.addStudentMain {
+  width: 100%;
+  gap: 20px;
+}
+
+.addStudentMain h6 {
+  width: 100%;
+  background-color: var(--red-color);
+  color: white;
+  padding-left: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+
+  /* flex-direction: column; */
+
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 10px;
+}
+
+.form div {
+  /* width: 50%; */
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.form div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.form div input,
+.form div select {
+  width: 300px;
+}
+.form div span {
+  width: 200px;
+}
+.btn {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.btn button {
+  width: 200px;
+  margin-left: 10px;
+  color: white;
+  border: none;
+  height: 30px;
+}
+.close {
+  width: 100%;
+  display: flex;
+
+  justify-content: end;
+  padding-right: 20px;
+  /* background-color: aqua; */
+}
+.close button {
+  width: 100px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

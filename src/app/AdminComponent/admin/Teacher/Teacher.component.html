@@ -1,0 +1,55 @@
+<div class="mainTeacher">
+  <div class="head">
+    <h6>Danh Sách Giáo Viên</h6>
+    <div class="filter">
+      <span>Tìm Kiếm</span>
+      <input
+        (keyup)="Search($event)"
+        type="text"
+        placeholder="Mã Giáo Viên, Họ Tên "
+        class="form-control"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+      <button
+        type="button"
+        style="margin-left: 100px"
+        class="btn btn-primary"
+        (click)="OpenDialog()"
+      >
+        <i class="bi bi-plus-square-fill"></i> Thêm Giáo Viên
+      </button>
+    </div>
+  </div>
+  <div class="table">
+    <table class="tableStudent">
+      <thead>
+        <tr>
+          <th>Mã Sinh Viên</th>
+          <th>Tên Sinh Viên</th>
+          <th>Gmail</th>
+          <th>Ngày Tháng Năm Sinh</th>
+          <th>Số Điện Thoại</th>
+          <th>Mã Khoa</th>
+          <th>Giới Tính</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of teacherList">
+          <td>{{ item.personId }}</td>
+          <td>{{ item.fullName }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.dateOfBirth }}</td>
+          <td>{{ item.phoneNumber }}</td>
+          <td>{{ item.departmentId }}</td>
+          <td>{{ item.sex ? "Nam" : "Nữ" }}</td>
+          <td>
+            <button class="btnSua"><i class="bi bi-tools"></i></button>
+            <button class="btnXoa"><i class="bi bi-trash3"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

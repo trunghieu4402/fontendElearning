@@ -1,0 +1,83 @@
+<div class="sigup">
+  <div class="img"><img src="../../assets/img/bgTlu.jpg" alt="" /></div>
+  <div class="form">
+    <div class="title">
+      <img
+        src="../../assets/img/logo.svg"
+        style="width: 100px; height: 100x"
+        alt="logo"
+      />
+      <h6>Trường Đại Học Thăng Long</h6>
+      <h4>Cổng Thông Tin Đào Tạo</h4>
+    </div>
+    <div class="form-log">
+      <form [formGroup]="LoginForm" (submit)="Login()">
+        <div style="color: rgb(87, 0, 0)">
+          <h1 style="background-color: white">Đăng Nhập</h1>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>UserName</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="userName"
+              placeholder="ex:SVTL1@thanglong.edu.vn"
+              required
+            />
+            <mat-error
+              *ngIf="
+                LoginForm.controls['userName'].invalid &&
+                LoginForm.controls['userName'].touched
+              "
+            >
+              please enter a valid UserName
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              required
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="
+                LoginForm.controls['password'].invalid &&
+                LoginForm.controls['password'].touched
+              "
+            >
+              please enter a valid password
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <button
+            style="
+              background-color: rgb(145, 0, 0);
+              color: white;
+              height: 50px;
+              border-radius: 5px;
+            "
+            [disabled]="!LoginForm.valid"
+          >
+            Login
+          </button>
+        </div>
+        <p
+          style="
+            background-color: inherit;
+            height: 10px;
+            position: relative;
+            top: 15%;
+          "
+        >
+          thanglong.edu.vn
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

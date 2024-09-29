@@ -1,0 +1,42 @@
+<div class="addCourse">
+  <h6>Thêm Mới Môn Trong Kỳ {{ this.semester }}</h6>
+  <div style="display: flex; flex-direction: column; height: 50vh">
+    <div>
+      <span>Tìm Kiếm Môn Học</span>
+      <input
+        class="form-control"
+        type="text"
+        [(ngModel)]="key"
+        name="key"
+        (keyup)="Search()"
+      />
+    </div>
+    @if(key && listSearch!=[]){
+    <div
+      class="dropdownt"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: start;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 7px rgb(207, 207, 207);
+      "
+    >
+      <option
+        *ngFor="let item of listSearch; of: listSearch.slice(0, 10)"
+        (click)="PickCourse(item)"
+      >
+        {{ item.courseId }}_{{ item.courseName }}
+      </option>
+    </div>
+    }
+    <div class="btnSave" *ngIf="this.request.courseId">
+      <button class="btn btn-primary" (click)="Save()">Lưu</button>
+    </div>
+  </div>
+  <div class="btnClose">
+    <button (click)="Close()" class="btn btn-danger">Đóng</button>
+  </div>
+</div>

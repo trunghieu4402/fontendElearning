@@ -1,0 +1,118 @@
+.containerForm {
+  max-width: 100%;
+  max-height: 80vh;
+  overflow-y: hidden;
+}
+.form {
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 55%;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  gap: 10px;
+}
+.form div {
+  height: fit-content;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+}
+.form div div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form div input,
+.form div select {
+  width: 400px;
+}
+.form div div div {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border-radius: 5px;
+  height: 100px;
+  color: black;
+  overflow-x: auto;
+  border: 1px solid rgb(207, 205, 205);
+  background-color: white;
+}
+.form div div div span {
+  width: fit-content;
+  padding-left: 10px;
+}
+.form div div div span i:hover {
+  color: var(--red-color);
+  scale: 1.5px;
+}
+.form div div span {
+  width: 200px;
+}
+.addCourse {
+  width: 100%;
+
+  height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  color: var(--red-color);
+  overflow: hidden;
+}
+.addCourse h6 {
+  width: 100%;
+  height: 5vh;
+  background-color: var(--red-color);
+  color: white;
+  padding-left: 20px;
+}
+.btnClose {
+  background-color: inherit;
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  text-align: center;
+  padding-right: 30px;
+  margin-bottom: 10px;
+  justify-content: end;
+  align-items: center;
+}
+
+.btnClose button {
+  width: 100px;
+  background-color: var(--red-color);
+}
+.btn {
+  width: 100%;
+
+  height: fit-content;
+}
+.btn button {
+  width: 100px;
+}
+.addCourse div .dropdownt {
+  width: 400px;
+  margin-left: 210px;
+  border: 1px solid rgb(212, 211, 211);
+  display: flex;
+  border-radius: 5px;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+}
+.dropdownt option {
+  padding-left: 5px;
+  width: 100%;
+  height: 30px;
+}
+.dropdownt option:hover {
+  background-color: rgb(228, 228, 228);
+  cursor: pointer;
+}

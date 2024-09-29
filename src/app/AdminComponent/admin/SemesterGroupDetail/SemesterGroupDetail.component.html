@@ -1,0 +1,115 @@
+<div class="DetailSemesterContainer">
+  <div class="head">
+    <h6 class="title" data-tooltip="Di Vào Đây Làm Chó">Chi Tiết Kỳ Học</h6>
+    <div>
+      <span>Chọn Kỳ Học</span>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        name="semesterGroupId"
+        [(ngModel)]="semesterPick.semesterGroupId"
+        (change)="Change()"
+      >
+        <option
+          *ngFor="let item of listSemesterGroup"
+          [value]="item.semesterGroupId"
+        >
+          {{ item.semesterGroupId }}
+        </option>
+      </select>
+      <div *ngIf="this.semesterPick.status == 'SAPMO'">
+        <button
+          class="btn"
+          (click)="AddNewCourse()"
+          data-tooltip="Thêm Môn Mở Trong Kỳ"
+        >
+          <i class="bi bi-plus-square-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <table class="tableCourse">
+      <thead>
+        <tr>
+          <th>Stt</th>
+          <th scope="col">Id</th>
+          <th scope="col">Mã Môn</th>
+          <th scope="col">Tên Môn</th>
+          <th scope="col">Số Lượng Lớp Hiện Có</th>
+          <th scope="col">Danh Sách Lớp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of listCourse; let i = index">
+          <tr>
+            <td>{{ i }}</td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.courseId }}</td>
+            <td>{{ item.courseName }}</td>
+            <td>{{ item.ListClass.length }}</td>
+            <td>
+              <button
+                (click)="Nhan(item)"
+                class="btn"
+                data-tooltip="Xem Chi Tiết"
+              >
+                @if(swap&& pick.id==item.id) {
+                <i class="bi bi-chevron-double-up"></i>
+                }@else {
+                <i class="bi bi-chevron-double-down"></i>
+                }
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="pick && pick.id === item.id && swap">
+            <button
+              *ngIf="semesterPick.status == 'SAPMO'"
+              class="btn"
+              data-tooltip="Thêm Mới Lớp"
+              (click)="AddNewClass(item)"
+            >
+              <i class="bi bi-plus-square"></i>
+            </button>
+            <table class="tableClass">
+              <thead>
+                <tr>
+                  <th>Stt</th>
+                  <th>Mã Lớp</th>
+                  <th>Số Lượng Chỗ Ngồi</th>
+                  <th>Số Chỗ Đã Ngồi</th>
+                  <th>Danh Sách Sinh Viên</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (i of pick.ListClass; track $index) {
+                <ng-container class="ClassContainer">
+                  <tr style="background-color: rgb(233, 233, 233)">
+                    <td>{{ $index }}</td>
+                    <td>{{ i.ClassId }}</td>
+                    <td>{{ i.maxSlot }}</td>
+                    <td>{{ i.currentSlot }}</td>
+                    <td>
+                      <button>Chi Tiết Lớp</button>
+                    </td>
+                  </tr>
+                  @for (dt of i.ClassDetail; track $index) {
+                  <tr>
+                    <span
+                      >Phòng :{{ dt.roomId }}, Lịch Học :{{ dt.Schedule }}, Giáo
+                      Viên :{{ dt.teacherName }}</span
+                    >
+                  </tr>
+                  }
+                </ng-container>
+
+                }
+                <tr></tr>
+              </tbody>
+            </table>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="semesterContainer">
+  <div class="head">
+    <h6>Danh Sách Kỳ Học</h6>
+    <div>
+      <span>Nhóm Sinh Viên</span>
+      <select
+        name="filter"
+        [(ngModel)]="filter"
+        class="form-select"
+        aria-label="Default select example"
+        (change)="pickGroup()"
+      >
+        <option value="all">Tất Cả</option>
+        <option value="N1">Nhóm 1</option>
+        <option value="N2">Nhóm 2</option>
+        <option value="N3">Nhóm 3</option>
+      </select>
+
+      <button
+        class="btn btn-primary"
+        style="color: white; background-color: var(--blue-color)"
+        data-tooltip="Thêm Mới Kỳ Học"
+        (click)="OpentDialog()"
+      >
+        <i class="bi bi-plus-square-fill"></i>
+      </button>
+    </div>
+  </div>
+
+  <table class="tableSemester">
+    <thead>
+      <tr>
+        <th>Mã Kỳ Học</th>
+        <th>Đơn Vị Phí</th>
+        <th>Thời Gian Bắt Đầu</th>
+        <th>Thời Gian Kết Thúc</th>
+        <th>Thời Gian Đăng Ký Học</th>
+        <th>Nhóm Sinh Viên</th>
+        <th>Trạng Thái</th>
+        <th>Thao Tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of listSemester; track $index) {
+      <tr (click)="Detail(item)">
+        <td>{{ item.semesterGroupId }}</td>
+        <td>{{ item.baseCost }}</td>
+        <td>{{ item.start }}</td>
+        <td>{{ item.finish }}</td>
+        <td>{{ item.timeDangKyHoc }}</td>
+        <td>{{ item.groupId }}</td>
+        @if(item.status=='SAPMO') {
+        <td *ngIf="item" class="btn" data-tooltip="Kỳ Sắp Mở">
+          <i style="color: var(--red-color)" class="bi bi-circle-fill"></i>
+        </td>
+        } @else if(item.status=='DANGMO'){
+        <td class="btn" data-tooltip="Kỳ Đang Mở">
+          <i style="color: green" class="bi bi-circle-fill"></i>
+        </td>
+        } @else {
+        <td class="btn" data-tooltip="Kỳ Học Đã Mở">
+          <i style="color: rgb(104, 104, 104)" class="bi bi-circle-fill"></i>
+        </td>
+        }
+        <td>
+          <button
+            class="btn"
+            data-tooltip="Cập Nhật"
+            (click)="Update(item); $event.stopPropagation()"
+          >
+            <img
+              src="../../../../assets/img/data-processing.png"
+              style="width: 23px"
+              alt=""
+            />
+          </button>
+          <button
+            class="btn"
+            data-tooltip="Xóa"
+            (click)="Delete(item); $event.stopPropagation()"
+          >
+            <i class="bi bi-trash3"></i>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

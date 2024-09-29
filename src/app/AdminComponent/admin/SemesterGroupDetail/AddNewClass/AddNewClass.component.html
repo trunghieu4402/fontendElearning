@@ -1,0 +1,279 @@
+<div class="AddClassContainer">
+  <div class="mainContainer">
+    <div class="infor">
+      <h6>Thêm Mới Lớp</h6>
+      <div class="baseInfor">
+        <div>
+          <span>Kỳ Học</span>
+          <input
+            class="form-control"
+            disabled="true"
+            type="text"
+            readonly
+            [value]="data.semester.semesterGroupId"
+          />
+        </div>
+        <div>
+          <span>Môn Học</span>
+          <input
+            class="form-control"
+            disabled="true"
+            type="text"
+            readonly
+            [value]="data.course.courseId"
+          />
+        </div>
+      </div>
+      <div class="listSchedule">
+        <span>Danh Sách Ca Học</span>
+        <div *ngFor="let item of ListSchedule; let i = index">
+          <span>
+            Phòng: {{ item.room }} __ Ca Học : {{ item.schedule }} __ Giáo Viên
+            :{{ item.teacher }}
+          </span>
+          <button (click)="DeleteItem(item)">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <mat-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form>
+          <ng-template matStepLabel>Chọn Ca Học</ng-template>
+          <div class="head">
+            <div>
+              <span>Ca Học</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.schedule"
+              />
+            </div>
+          </div>
+
+          <div class="tableContainer">
+            <table class="tables">
+              <thead>
+                <tr>
+                  <th style="width: 20px">Ca/Thứ</th>
+                  <th *ngFor="let item of Thu">{{ item }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of rows; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td *ngFor="let col of colums">
+                    @if(Locate[col * rows.length + row].passStatus) {
+                    <button style="background-color: gray" disabled></button>
+                    } @else { @if(Locate[col * rows.length + row].status) {
+                    <button
+                      style="background-color: var(--red-color)"
+                      (click)="Nhan(col * rows.length + row)"
+                    ></button>
+                    } @else {
+                    <button
+                      style="background-color: rgb(255, 255, 255)"
+                      (click)="Nhan(col * rows.length + row)"
+                    ></button>
+                    } }
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="buttoncontainer" *ngIf="this.Lich.schedule">
+            <button
+              matStepperNext
+              class="btn"
+              data-tooltip="Bước Tiếp Theo"
+              (click)="next()"
+            >
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step *ngIf="this.Lich.schedule" [stepControl]="secondFormGroup">
+        <form *ngIf="this.Lich.schedule">
+          <ng-template matStepLabel>Chọn Phòng Học</ng-template>
+          <div class="head">
+            <div>
+              <span>Ca Học</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.schedule"
+              />
+            </div>
+            <div>
+              <span>Phòng Học</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.room"
+              />
+            </div>
+          </div>
+          <div class="tableContainer">
+            <table class="tableRoom">
+              <tbody>
+                <tr *ngFor="let row of room">
+                  <td *ngFor="let cl of room">
+                    @if (this.Rooms[row * room.length + cl].status ) { @if
+                    (this.Rooms[row * room.length + cl].roomId ==
+                    this.Lich.room) {
+                    <button
+                      style="background-color: var(--blue-color); color: white"
+                    >
+                      <i class="bi bi-door-open"></i>
+                      {{ this.Rooms[row * room.length + cl].roomId }}
+                    </button>
+
+                    } @else {
+                    <button style="color: var(--red-color)" disabled>
+                      <i class="bi bi-door-closed-fill"></i>
+                      {{ this.Rooms[row * room.length + cl].roomId }}
+                    </button>
+                    } }@else {
+                    <button
+                      (click)="PickRoom(row * room.length + cl)"
+                      style="color: var(--green-color)"
+                    >
+                      <i class="bi bi-door-open-fill"></i>
+                      {{ this.Rooms[row * room.length + cl].roomId }}
+                    </button>
+                    }
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="buttoncontainer"
+            style="display: flex; justify-content: space-between"
+          >
+            <button matStepperPrevious class="btn" data-tooltip="Trở lại">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <button matStepperNext class="btn" data-tooltip="Bước Tiếp Theo">
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step *ngIf="this.Lich.schedule">
+        <ng-template matStepLabel>Chọn Giáo Viên</ng-template>
+        <form>
+          <div class="head">
+            <div>
+              <span>Ca Học</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.schedule"
+              />
+            </div>
+            <div>
+              <span>Phòng Học</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.room"
+              />
+            </div>
+            <div>
+              <span>Giáo Viên</span>
+              <input
+                type="text"
+                class="form-control"
+                disabled="true"
+                name=""
+                [value]="this.Lich.teacher"
+              />
+            </div>
+          </div>
+          <div class="tableContainer">
+            <div class="search">
+              <span style="width: 200px">Tìm Kiếm Giáo Viên</span>
+              <input
+                style="width: 500px; position: relative"
+                type="text"
+                class="form-control"
+                name="key"
+                [value]="this.Lich.teacher"
+                [(ngModel)]="key"
+                (keyup)="Search()"
+              />
+              @if(key && TeacherFilter!=[]){
+              <div
+                class="dropdownt"
+                style="
+                  position: absolute;
+                  width: 500px;
+
+                  left: 35%;
+                  top: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: start;
+                  text-align: start;
+                  background-color: white;
+                  border-radius: 10px;
+                  margin-top: 10px;
+                  display: flex;
+                  flex-direction: column;
+                  box-shadow: 0 4px 7px rgb(207, 207, 207);
+                "
+              >
+                <option
+                  *ngFor="let item of TeacherFilter"
+                  (click)="PickTeacher(item.personId)"
+                >
+                  {{ item.personId }}_{{ item.fullname }}
+                </option>
+              </div>
+              }
+            </div>
+          </div>
+          <div
+            class="buttoncontainer"
+            style="display: flex; justify-content: space-between"
+          >
+            <button class="btn" matStepperPrevious data-tooltip=" Trở về">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <button
+              class="btn"
+              (click)="Addmore()"
+              data-tooltip="Thêm lịch học"
+            >
+              <i class="bi bi-node-plus"></i>
+            </button>
+            <button
+              class="btn"
+              (click)="AddNewClass()"
+              data-tooltip="Thêm Lớp Mới"
+            >
+              <i class="bi bi-plus-square"></i>
+            </button>
+            <button class="btn" (click)="Submit()" data-tooltip="Lưu và Đóng">
+              <i class="bi bi-check-lg"></i>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

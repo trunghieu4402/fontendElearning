@@ -1,0 +1,92 @@
+.mainStudent {
+  width: 98%;
+  max-height: 83vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* height: 100vh; */
+  margin-left: 1%;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 5px 8px gray;
+}
+.table {
+  max-height: 70vh;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.tableStudent {
+  width: 155vh;
+  max-height: 100%;
+  border-collapse: collapse;
+  /* height: 80vh; */
+}
+.tableStudent thead {
+  background-color: var(--red-color);
+}
+
+.tableStudent th,
+.tableStudent td {
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap; /* Đảm bảo nội dung không xuống dòng */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  text-overflow: ellipsis; /* Thêm dấu "..." nếu nội dung quá dài */
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tableStudent th {
+  background-color: #970a0a;
+  color: white;
+}
+.filter {
+  width: 98%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+}
+.filter * {
+  width: fit-content;
+}
+.filter input {
+  width: 300px;
+}
+.btnThem {
+  font-size: 30px;
+  margin-left: 50px;
+  border: none;
+  background-color: inherit;
+}
+.btnThem:hover {
+  color: var(--green-color);
+}
+.btnSua {
+  font-size: 20px;
+  border: none;
+  background-color: inherit;
+}
+.btnXoa {
+  font-size: 20px;
+  border: none;
+  background-color: inherit;
+}
+.btnSua:hover {
+  color: blue;
+}
+.btnXoa:hover {
+  color: red;
+}
+.head {
+  flex: 0 1 auto;
+}
+.table {
+  flex: 1 1 auto; /* Chiều cao chiếm phần còn lại */
+  overflow-y: auto;
+  box-shadow: 0 5px 8px rgb(77, 77, 77);
+}

@@ -1,0 +1,94 @@
+* {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(219, 219, 219);
+}
+.sigup {
+  /* width: 100%;
+    height: 100%; */
+  display: grid;
+  grid-template-columns: 66% 34%;
+}
+.form {
+  background-color: rgb(219, 219, 219);
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.title {
+  width: 100%;
+  height: 25%;
+  background-color: inherit;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.form-log {
+  /* background-color: rgb(255, 255, 255); */
+  width: 90%;
+  /* max-width: 80%; */
+  height: 90%;
+  margin: 5%;
+  border-radius: 10px;
+  /* margin-left: 5%; */
+  box-shadow: 0 5px 8px rgb(12, 12, 12);
+
+  background-color: white;
+}
+.form-log form {
+  border-radius: 10px;
+  /* margin-top: 5%; */
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 90%;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20px;
+  color: black;
+}
+.form-log form div {
+  background-color: white;
+  margin-top: 20px;
+  /* border: 1px solid rgb(0, 0, 0); */
+}
+.form-log form div mat-form-field {
+  /* border-radius: px; */
+  background-color: white;
+  color: white;
+  margin-top: 20px;
+}
+.form-log form div mat-form-field mat-error {
+  background-color: inherit;
+}
+.form-log form div mat-form-field mat-label {
+  background-color: inherit;
+}
+.form-log div {
+  width: 90%;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  /* margin-top: 5%; */
+  margin-left: 5%;
+  height: max-content;
+}
+.form-log form div :first-child {
+  padding-top: 2px;
+}
+@media (max-width: 768px) {
+  .img {
+    display: none;
+  }
+  .sigup {
+    display: flex;
+  }
+  .form-log {
+    max-width: 100%;
+  }
+}

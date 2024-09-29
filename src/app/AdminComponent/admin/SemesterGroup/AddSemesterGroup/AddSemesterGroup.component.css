@@ -1,0 +1,50 @@
+.AddSemesterContainer {
+  width: 90%;
+  margin-left: 5%;
+}
+custom-dialog-container {
+  border-radius: 0px;
+}
+.form {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+}
+.form div {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.form div span {
+  width: 200px;
+  text-align: left;
+}
+.form div input,
+.form div select {
+  width: 300px;
+}
+.form div button {
+  width: 100px;
+}
+.form div mat-form-field {
+  width: 300px;
+}
+.btnClose {
+  width: 100%;
+
+  text-align: end;
+}
+.btnClose button {
+  width: 100px;
+}
+.AddSemesterContainer h6 {
+  background-color: var(--red-color);
+  color: white;
+}

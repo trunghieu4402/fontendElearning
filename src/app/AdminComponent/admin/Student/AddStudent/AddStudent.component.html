@@ -1,0 +1,120 @@
+<div class="addStudentMain">
+  <h6>Thêm Mới Sinh Viên</h6>
+  <form action="" class="form" #studentForm="ngForm">
+    <div>
+      <div>
+        <span>Họ và tên</span>
+        <input
+          id="fullName"
+          name="fullName"
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="Student.fullName"
+        />
+      </div>
+      <div>
+        <span>Số điện thoại</span>
+        <input
+          id="phone"
+          type="number"
+          name="phoneNumber"
+          [(ngModel)]="Student.phoneNumber"
+          type="text"
+          class="form-control"
+          placeholder="PhoneNumber"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <div>
+        <span for="">Gmail</span>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="Student.email"
+          type="text"
+          class="form-control"
+          placeholder="Gmail"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <div>
+        <span>Giới Tính</span>
+        <mat-radio-group id="sex" name="sex" [(ngModel)]="Student.sex">
+          <mat-radio-button class="gt" [value]="true">Nam</mat-radio-button>
+          <mat-radio-button class="gt" [value]="false">Nữ</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <span>Ngày tháng năm Sinh</span>
+        <input
+          type="date"
+          class="form-control"
+          id="birth"
+          name="dateOfBirth"
+          [(ngModel)]="Student.dateOfBirth"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+    </div>
+    <div>
+      <div>
+        <span>Khoa</span>
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          id="department"
+          name="departmentId"
+          (change)="pickDepartment()"
+          [(ngModel)]="Student.departmentId"
+        >
+          <option
+            selected
+            *ngFor="let item of ListDepartment"
+            value="{{ item.departmentId }}"
+          >
+            {{ item.departmentName }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <span for="" *ngIf="DeppartmentPick">Ngành</span>
+        <select
+          id="major"
+          name="majorId"
+          [(ngModel)]="Student.majorId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option
+            *ngFor="let i of DeppartmentPick?.listMajor"
+            value="{{ i.majorId }}"
+          >
+            {{ i.majorName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="btn">
+      <button
+        type="button"
+        (click)="Submit(studentForm)"
+        class="btn btn-primary"
+      >
+        Lưu
+      </button>
+    </div>
+  </form>
+  <div class="close">
+    <button
+      class="btn btn-danger"
+      style="background-color: var(--red-color)"
+      (click)="Close()"
+    >
+      Đóng
+    </button>
+  </div>
+</div>

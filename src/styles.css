@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~bootstrap/dist/css/bootstrap.css" */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@angular/material/prebuilt-themes/azure-blue.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif, "Helvetica Neue", sans-serif;
+}
+body {
+  overflow-y: hidden; /* Ẩn thanh cuộn dọc */
+  overflow-x: hidden;
+}
+:root {
+  --blue-color: #075990;
+  --green-color: #019c42;
+  --red-color: rgb(139, 0, 0);
+}
+.custom-dialog-container {
+  border-radius: 10px; /* Điều chỉnh giá trị này theo ý muốn */
+}
+custom-dialog-container {
+  border-radius: 0px;
+}
+* {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+}

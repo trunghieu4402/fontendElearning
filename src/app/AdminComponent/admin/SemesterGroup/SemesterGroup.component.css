@@ -1,0 +1,88 @@
+.semesterContainer {
+  width: 98%;
+  height: 90vh;
+  border: 1px solid rgb(207, 203, 203);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  border-radius: 10px;
+  gap: 10px;
+}
+.tableSemester {
+  display: table;
+  width: 98%;
+  margin-left: 1%;
+  text-align: center;
+  justify-items: center;
+}
+.tableSemester thead {
+  background-color: var(--red-color);
+  height: 40px;
+  color: white;
+}
+.tableSemester tr {
+  border: 1px solid rgb(182, 175, 175);
+  height: 40px;
+}
+.tableSemester tbody tr:hover {
+  background-color: rgb(241, 241, 241);
+  cursor: pointer;
+}
+.tableSemester tr td button {
+  border: none;
+  background-color: inherit;
+}
+.tableSemester tr td button i {
+  font-size: 20px;
+}
+.custom-dialog-container {
+  border-radius: 10px; /* Điều chỉnh giá trị này theo ý muốn */
+}
+.head {
+  gap: 10px;
+  column-gap: 10px;
+}
+.head div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.head span,
+.head select {
+  width: 150px;
+}
+.btn,
+.btndele {
+  position: relative;
+  padding: 10px 20px;
+  background-color: inherit;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+}
+
+.btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+custom-dialog-container {
+  border-radius: 0px;
+}

@@ -1,0 +1,94 @@
+.DetailSemesterContainer {
+  gap: 10px;
+  width: 98%;
+  margin-left: 1%;
+  height: 85vh;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+}
+.head div {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  align-items: center;
+  text-align: center;
+}
+.head div span {
+  width: 300px;
+}
+
+.tableCourse {
+  display: table;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  margin-left: 5%;
+  border-collapse: collapse;
+}
+.tableCourse thead {
+  color: white;
+  background-color: var(--red-color);
+}
+
+.tableCourse tr {
+  height: 40px;
+  border-bottom: 1px solid gray;
+}
+.tableCourse thead tr,
+.tableCourse tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.tableClass {
+  display: table;
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 10%;
+}
+.tableClass thead tr,
+.tableClass tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.ClassContainer {
+  border: 1px solid gray;
+}
+.btn {
+  position: relative;
+  padding: 10px 20px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+.btn i {
+  font-size: 20px;
+  color: green;
+}
+.btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+.tableCourse tbody {
+  display: block;
+  max-height: 62vh;
+  overflow-y: auto;
+}

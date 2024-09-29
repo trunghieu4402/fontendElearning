@@ -1,0 +1,93 @@
+<div class="addStudentMain">
+  <h6>Thêm Mới Giáo Viên</h6>
+  <form action="" class="form" #teacherForm="ngForm">
+    <div>
+      <div>
+        <span>Họ và tên</span>
+        <input
+          id="fullName"
+          name="fullName"
+          type="text"
+          class="form-control"
+          placeholder="FullName"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="teacher.fullName"
+        />
+      </div>
+      <div>
+        <span>Số điện thoại</span>
+        <input
+          id="phone"
+          type="number"
+          class="form-control"
+          placeholder="Phone Number"
+          aria-describedby="basic-addon1"
+          name="phoneNumber"
+          [(ngModel)]="teacher.phoneNumber"
+        />
+      </div>
+      <div>
+        <span>Gmail</span>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          aria-describedby="basic-addon1"
+          id="email"
+          name="email"
+          [(ngModel)]="teacher.email"
+        />
+      </div>
+      <div>
+        <span>Giới Tính</span>
+        <mat-radio-group id="sex" name="sex" [(ngModel)]="teacher.sex">
+          <mat-radio-button class="gt" [value]="true">Nam</mat-radio-button>
+          <mat-radio-button class="gt" [value]="false">Nữ</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <span>Ngày tháng năm Sinh</span>
+        <input
+          type="date"
+          class="form-control"
+          placeholder="Date of Birth"
+          aria-describedby="basic-addon1"
+          id="birth"
+          name="dateOfBirth"
+          [(ngModel)]="teacher.dateOfBirth"
+        />
+      </div>
+    </div>
+    <div>
+      <div>
+        <span>Khoa</span>
+        <select
+          id="department"
+          name="departmentId"
+          [(ngModel)]="teacher.departmentId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option
+            *ngFor="let item of ListDepartment"
+            value="{{ item.departmentId }}"
+          >
+            {{ item.departmentName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="btn">
+      <button (click)="Submit(teacherForm)" class="btn btn-primary">Lưu</button>
+    </div>
+  </form>
+  <div class="close">
+    <button
+      (click)="Close()"
+      class="btn btn-danger"
+      style="background-color: var(--red-color)"
+    >
+      Đóng
+    </button>
+  </div>
+</div>

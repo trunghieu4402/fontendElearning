@@ -1,0 +1,94 @@
+<div *ngIf="!RegisterStatus">
+  <h1>Bạn Chưa Tới Thời Gian Đăng Ký Học</h1>
+</div>
+<div *ngIf="RegisterStatus" class="RegisterContainer">
+  <div class="leftmain">
+    <h6>{{ this.Semester }}</h6>
+    <div class="listcourse">
+      <span>Danh Sách Môn Đăng ký</span>
+      <div>
+        <ul>
+          <li
+            *ngFor="let course of ListCourse"
+            (click)="SelectCourse(course)"
+            [class.active]="course == CoursePick"
+          >
+            {{ course.courseName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightmain">
+    <div class="listclass">
+      <span>Danh Sách Lớp Của Môn {{ this.CoursePick.courseName }}</span>
+      <div *ngIf="this.CoursePick">
+        <div *ngFor="let class of this.ListClass">
+          <label [for]="class">
+            <input
+              style="border: 1px solid gray; margin-right: 5px"
+              class="form-check-input"
+              type="checkbox"
+              [checked]="isClassSelected(this.CoursePick.id, class.ClassId)"
+              (change)="slectedClass(class, $event)"
+            />
+            {{ class.ClassId }} [<span *ngFor="let i of class.ClassDetail"
+              >{{ i.roomId }}_{{ i.teacherName }}_{{ i.Schedule }} ;</span
+            >] ({{ class.currentSlot }}/{{ class.maxSlot }})
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="schedule">
+      <span>Lịch Học Dự Kiến</span>
+      <div class="table">
+        <table class="tableschedule">
+          <thead>
+            <tr>
+              <th style="width: 50px">Ca</th>
+              <th>Thứ 2</th>
+              <th>Thứ 3</th>
+              <th>Thứ 4</th>
+              <th>Thứ 5</th>
+              <th>Thứ 6</th>
+              <th>Thứ 7</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of rows; let rowIndex = index">
+              <td>{{ rowIndex + 1 }}</td>
+              <ng-container *ngFor="let col of columns; let colIndex = index">
+                <ng-container *ngFor="let i of schedule">
+                  <ng-container
+                    *ngIf="i.start === col * rows.length + rowIndex"
+                  >
+                    <td
+                      [attr.rowspan]="i.finish - i.start + 1"
+                      style="
+                        background-color: rgb(196, 70, 70);
+                        color: white;
+
+                        font-size: 12px;
+                        height: 30px;
+                      "
+                    >
+                      {{ i.className }}
+                      <br />
+                      {{ i.room }}
+                      <br />
+                      {{ i.teacher }}
+                    </td>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!hasClass(rowIndex, colIndex)">
+                  <td></td>
+                </ng-container>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

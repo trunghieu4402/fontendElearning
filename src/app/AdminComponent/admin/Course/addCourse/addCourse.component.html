@@ -1,0 +1,209 @@
+<div class="addCourse">
+  <h6>Thêm mới môn học</h6>
+  <div class="containerForm">
+    <form class="form" #formCourse="ngForm">
+      <div>
+        <div>
+          <span>Mã Môn</span>
+          <input
+            id="courseId"
+            name="courseId"
+            [(ngModel)]="course.courseId"
+            type="text"
+            class="form-control"
+            placeholder="Course Id"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div>
+          <span>Tên Môn</span>
+          <input
+            id="courseName"
+            name="courseName"
+            type="text"
+            [(ngModel)]="course.courseName"
+            class="form-control"
+            placeholder="Course Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div>
+          <span>Số tín chỉ</span>
+          <input
+            id="credits"
+            type="number"
+            name="credits"
+            [(ngModel)]="course.credits"
+            class="form-control"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <div>
+          <span>Hệ Số</span>
+          <input
+            type="number"
+            id="coefficient"
+            name="coefficient"
+            [(ngModel)]="course.coefficient"
+            class="form-control"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <div>
+          <span>Loại Môn</span>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name=""
+            id="type"
+            (change)="TypePick()"
+            name="type"
+            [(ngModel)]="course.type"
+          >
+            <option value="COSO" selected>Cơ Sở</option>
+            <option value="COSONGANH">Cơ Sở Ngành</option>
+            <option value="CHUYENNGANH">Chuyên Ngành</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mid" *ngIf="type == 'COSONGANH' || type == 'CHUYENNGANH'">
+        <div>
+          <span>Khoa</span>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="department"
+            name="departmentId"
+            (change)="pickDepartment()"
+            [(ngModel)]="DepartmentId"
+          >
+            <option
+              *ngFor="let item of listDepartment"
+              value="{{ item.departmentId }}"
+            >
+              {{ item.departmentName }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="type == 'CHUYENNGANH' && Pickdepartment">
+          <span>Ngành</span>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="major"
+            name="majorId"
+            [(ngModel)]="MajorId"
+            (change)="pickMajor()"
+          >
+            <option
+              *ngFor="let i of Pickdepartment.listMajor"
+              value="{{ i.majorId }}"
+              selected
+            >
+              {{ i.majorName }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <button
+            style="width: 150px"
+            class="btn btn-primary"
+            *ngIf="
+              (type == 'COSONGANH' && Pickdepartment) ||
+              (type == 'CHUYENNGANH' && Pickmajor)
+            "
+            (click)="AddInfor()"
+          >
+            Thêm Thông tin
+          </button>
+        </div>
+
+        <div *ngIf="type == 'COSONGANH' && Pickdepartment">
+          <span>Danh Sách Khoa</span>
+          <div>
+            <span *ngFor="let item of Departments"
+              >{{ item.departmentId }}_{{ item.departmentName }}
+              <i
+                class="bi bi-x"
+                style="font-size: 20px"
+                (click)="unPickDepartment(item)"
+              ></i>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="type == 'CHUYENNGANH' && Pickmajor">
+          <span>Danh Sách Ngành</span>
+          <div>
+            <span *ngFor="let item of Majors"
+              >{{ item.majorId }}_{{ item.majorName }}
+              <i class="bi bi-x" (click)="unPickMajor(item)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <span>Điều Kiện Tiên Quyết</span>
+        </div>
+        <div>
+          <span>Tín Chỉ Yêu Cầu</span
+          ><input
+            type="number"
+            name="requestCredits"
+            [(ngModel)]="course.requestCredits"
+            class="form-control"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <div>
+          <span>Tìm Kiếm</span>
+
+          <input
+            class="form-control"
+            aria-describedby="basic-addon1"
+            type="text"
+            placeholder="Tìm Kiếm Môn Học"
+            name="key"
+            [(ngModel)]="key"
+            (keyup)="Search()"
+          />
+        </div>
+        @if(key && listSearch!=[]){
+        <div class="dropdownt">
+          <option
+            *ngFor="let item of listSearch; of: listSearch.slice(0, 3)"
+            (click)="PickCourse(item)"
+          >
+            {{ item.courseId }}_{{ item.courseName }}
+          </option>
+        </div>
+        }
+
+        <div>
+          <span>Danh Sách Điều Kiện Tiên Quyết</span>
+          <div>
+            <span *ngFor="let item of ItemList"
+              >{{ item.courseId }} {{ item.courseName }}
+              <i class="bi bi-x" (click)="undoItem(item)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="btn">
+        <button class="btn btn-primary" (click)="submit(formCourse)">
+          Lưu
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="btnClose">
+    <button class="btn btn-danger" (click)="Close()">Close</button>
+  </div>
+</div>

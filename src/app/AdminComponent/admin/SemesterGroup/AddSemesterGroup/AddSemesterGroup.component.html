@@ -1,0 +1,81 @@
+<div class="AddSemesterContainer">
+  <h6>Thêm Mới Kỳ Học</h6>
+  <form action="" #formSemester="ngForm" class="form">
+    <div>
+      <span>Chọn Nhóm Sinh Viên</span>
+      <select
+        name="groupId"
+        [(ngModel)]="SemesterGroup.groupId"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option value="N1">Nhóm 1</option>
+        <option value="N2">Nhóm 2</option>
+        <option value="N3">Nhóm 3</option>
+      </select>
+    </div>
+    <div>
+      <span>Đơn Vị Phí</span>
+      <input
+        type="number"
+        [(ngModel)]="SemesterGroup.baseCost"
+        name="baseCost"
+        class="form-control"
+      />
+    </div>
+    <div>
+      <span>Thời Gian Học</span>
+      <mat-form-field>
+        <mat-date-range-input [rangePicker]="rangePicker">
+          <input
+            matStartDate
+            placeholder="Start date"
+            [(ngModel)]="SemesterGroup.start"
+            name="start"
+          />
+          <input
+            matEndDate
+            [(ngModel)]="SemesterGroup.end"
+            name="end"
+            placeholder="End date"
+          />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="rangePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div>
+      <span>Thời Gian Đăng Ký Học</span>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="SemesterGroup.timeDKHoc"
+          name="timeDKHoc"
+          [matDatepicker]="picker"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <button (click)="Save()" class="btn btn-primary">Lưu</button>
+    </div>
+  </form>
+  <div class="btnClose">
+    <button
+      class="btn btn-danger"
+      style="background-color: var(--red-color)"
+      (click)="Close()"
+    >
+      Đóng
+    </button>
+  </div>
+</div>

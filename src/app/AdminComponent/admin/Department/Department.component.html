@@ -1,0 +1,65 @@
+
+<div class="pageDepartment">
+  <div class="head">
+    <h6>Danh Sach Nganh Hoc Toàn Trường</h6>
+    <button class="btnThem" routerLink="addDepartment"><i class="bi bi-plus-square"></i> Thêm Mới Khoa</button>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <table class="tableDepartment">
+    <thead>
+      <tr>
+        <th scope="col">Mã Khoa</th>
+        <th scope="col">Tên Khoa</th>
+        <th scope="col">Giáo Viên Phụ Trách</th>
+        <th scope="row">Danh Sách Ngành</th>
+        <th scope="col"> Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of listDepartment">
+      <tr>
+        <td>{{item.departmentId}}</td>
+        <td>{{item.departmentName}}</td>
+        <td>{{item.lead}}</td>
+        <td>
+      <button (click)="selectDepartment(item)" class="btninfor"><i class="bi bi-chevron-down"></i> </button>
+      </td>
+        <td>
+          <button class="btnXoa"><i class="bi bi-trash3"></i></button>
+          <button class="btnSua"><i class="bi bi-tools"></i></button>
+        </td>
+      </tr>
+      <tr *ngIf="selectedDepartment && selectedDepartment.departmentId === item.departmentId">
+        <button class="btnThem"><i class="bi bi-plus-square"></i> Thêm Mới Ngành</button>
+       <table class="tableMajor">
+        <thead>
+          <tr>
+            <th scope="col"> Mã Ngành</th>
+            <th scope="col">Tên Ngành</th>
+            <th scope="col">Thao Tác</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr *ngFor="let major of item.listMajor">
+          <td>{{major.majorId}}</td>
+          <td>{{major.majorName}}</td>
+          <td>
+            <button (click)="DeleteMajor(major)" class="btnXoa"><i class="bi bi-trash3"></i></button>
+            <button (click)="UpdateMajor(major)" class="btnSua"><i class="bi bi-tools"></i></button>
+          </td>
+        </tr>
+
+      </tbody>
+        
+       </table>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
+
+
+
+

@@ -1,0 +1,107 @@
+<div class="adminMain">
+  <div class="leftPage">
+    <div style="text-align: center">
+      <img
+        style="
+          width: 100px;
+          border-bottom: 1px solid gray;
+          background-color: inherit;
+        "
+        src="../../../assets/img/logo.svg"
+        alt=""
+      />
+    </div>
+    <div class="infor">
+      <img src="../../../assets/img/cv2.png" alt="" />
+      <div>
+        <h6>{{ UserId }}</h6>
+        <p>{{ role }}</p>
+      </div>
+    </div>
+
+    <div class="menu" style="overflow-y: auto">
+      <ul>
+        <h6>Thông Tin</h6>
+        <li
+          [routerLink]="['./information']"
+          routerLinkActive="active"
+          (click)="Nhan($event)"
+        >
+          <i class="bi bi-file-earmark-person-fill"></i>Thông Tin Sinh Viên
+        </li>
+        <li
+          [routerLink]="['#']"
+          routerLinkActive="active"
+          (click)="Nhan($event)"
+        >
+          <i class="bi bi-bell-fill"></i> Thông Báo
+        </li>
+        <li
+          [routerLink]="['./studyprograms']"
+          routerLinkActive="active"
+          (click)="Nhan($event)"
+        >
+          <i class="bi bi-clipboard-minus-fill"></i>Chương Trình Đào Tạo
+        </li>
+        <li
+          (click)="Nhan($event)"
+          [routerLink]="['#']"
+          routerLinkActive="active"
+        >
+          <i class="bi bi-clipboard2-data-fill"></i>Bảng Điểm
+        </li>
+        <li
+          [routerLink]="['./schedule']"
+          routerLinkActive="active"
+          (click)="Nhan($event)"
+        >
+          <i class="bi bi-calendar-week-fill"></i>Lịch Học
+        </li>
+      </ul>
+      <ul>
+        <h6>Trực Tuyến</h6>
+        <li
+          [routerLink]="['./register']"
+          routerLinkActive="active"
+          (click)="Nhan($event)"
+        >
+          <i class="bi bi-clipboard-check-fill"></i>Đăng Ký Học
+        </li>
+      </ul>
+      <ul>
+        <h6>Tài Chính</h6>
+        <li
+          (click)="Nhan($event)"
+          [routerLink]="['transcript']"
+          routerLinkActive="active"
+        >
+          <i class="bi bi-receipt-cutoff"></i>Hóa Đơn
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rightPage">
+    <div class="hearder">
+      <h6>Trường Đại Học Thăng Long</h6>
+      <img
+        src="../../../assets/img/Flag_of_Vietnam.svg"
+        alt=""
+        style="width: 30px"
+      />
+      <i class="bi bi-bell-fill"></i>
+      <button
+        class="btnLogout"
+        (click)="Logout()"
+        [routerLink]="['/authenticate']"
+        data-tooltip="Đăng Xuất"
+      >
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+    <div class="content">
+      <h6><i class="bi bi-arrow-bar-right"></i>{{ title }}</h6>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
